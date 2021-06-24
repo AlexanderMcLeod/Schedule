@@ -5,6 +5,7 @@ import java.util.Random;
 
 import student.Student;
 import schedule.Schedule;
+import subject.Subject;
 
 public class RandomStudents {
 
@@ -18,20 +19,20 @@ public class RandomStudents {
         final int SUBJECT_SELECTION_COUNT = 5;
 
         for (int i = 0; i < SUBJECT_SELECTION_COUNT; i++){
-            randomStudent.addSubject(generateRandomSubject(randomStudent.getSubjectSelection()));
+            randomStudent.addSubject(generateRandomSubject(schedule.getSubjectList(), randomStudent.getSubjectSelection()));
         }
         
         return randomStudent;
     }
 
-    public static String generateRandomSubject(ArrayList<String> subjectList){
+    public static String generateRandomSubject(ArrayList<Subject> scheduleSubjectList, ArrayList<String> studentSubjectList) throws Exception{
 
-        String randomSubjectID = subjectList.get(new Random().nextInt(subjectList.size()));
+        Subject randomSubjectID = scheduleSubjectList.get(new Random().nextInt(scheduleSubjectList.size()));
 
-        if (subjectList.contains(randomSubjectID)){
-            return generateRandomSubject(subjectList);
+        if (studentSubjectList.contains(randomSubjectID.getID())){
+            return generateRandomSubject(scheduleSubjectList, studentSubjectList);
         } else {
-            return randomSubjectID;
+            return randomSubjectID.getID();
         }
     }
     

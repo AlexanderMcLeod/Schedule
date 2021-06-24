@@ -1,10 +1,11 @@
 package time;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 import schoolclass.SchoolClass;
 
-public class Period {
+public class Period implements Serializable{
 
     private String ID;
 

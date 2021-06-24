@@ -22,6 +22,8 @@ public class RandomSubjects {
         Subject randomSubject = new Subject();
 
         final int SUBJECT_ID_LENGTH = 5;
+        
+        if (subjectList.size() == 0)
         randomSubject.setID(RandomID.createUniqueRandomID(schedule, SUBJECT_ID_LENGTH));
 
         return randomSubject;

@@ -1,18 +1,60 @@
 package schedule;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 import random.RandomID;
 import student.Student;
 import subject.Subject;
 import time.Timetable;
+import accesslayer.AccessLayer;
 
-public class Schedule {
+public class Schedule implements Serializable{
+
+    private String path;
 
     private ArrayList<Student> studentList = new ArrayList<Student>();
     private ArrayList<Subject> subjectList = new ArrayList<Subject>();
     
     public Timetable timetable = new Timetable();
+
+    public Schedule(String path){
+        this.path = path;
+    }
+
+    public void setPath(final String PATH_TO_SET) throws Exception{
+
+        if (PATH_TO_SET == null){
+            throw new Exception("Path to set is null");
+        }
+
+        if (PATH_TO_SET.length() == 0){
+            throw new Exception("Path the set has length 0");
+        }
+        path = PATH_TO_SET;
+    }
+
+    public String getPath() throws Exception{
+        if (path == null){
+            throw new Exception("Path is null");
+        }
+        return path;
+    }
+
+    public void save() throws IOException{
+        AccessLayer.saveSchedule(this, path);
+    }
+
+    public void update() throws FileNotFoundException, ClassNotFoundException, IOException {
+
+        Schedule tempSchedule = AccessLayer.getSchedule(path);
+
+        studentList = tempSchedule.studentList;
+        subjectList = tempSchedule.subjectList;
+        timetable = tempSchedule.timetable;
+    }
 
     public ArrayList<Student> getStudentList() throws Exception {
 
@@ -53,6 +95,16 @@ public class Schedule {
         studentList.add(student);
     }
 
+    public Student getStudentByID(final String STUDENT_ID) throws Exception{
+
+        for (Student student: getStudentList()){
+            if (student.getID().equals(STUDENT_ID)){
+                return student;
+            }
+        }
+        throw new Exception("Student ID " + STUDENT_ID + " was not found");
+    }
+
     public void removeStudent(final Student student) throws Exception{
 
         try{
@@ -69,9 +121,7 @@ public class Schedule {
                 studentList.remove(student);
             }
         }
-
         throw new Exception("No student had ID: " + ID_TO_BE_REMOVED);
-
     }
 
     public void addSubject(final Subject subject) throws Exception{
@@ -83,6 +133,16 @@ public class Schedule {
             subject.setID(RandomID.createUniqueRandomID(this, ID_LENGTH));
         }
         subjectList.add(subject);
+    }
+
+    public Subject getSubjectByID(final String SUBJECT_ID) throws Exception{
+
+        for (Subject subject : getSubjectList()){
+            if (subject.getID().equals(SUBJECT_ID)){
+                return subject;
+            }
+        }
+        throw new Exception("Subject ID " + SUBJECT_ID + " was not found");
     }
 
     public void removeSubject(final Subject subject) throws Exception{

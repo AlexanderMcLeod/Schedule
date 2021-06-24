@@ -1,8 +1,9 @@
 package time;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Timetable{
+public class Timetable implements Serializable{
 
     ArrayList<Day> dayList = new ArrayList<Day>();
 

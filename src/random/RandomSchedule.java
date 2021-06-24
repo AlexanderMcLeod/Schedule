@@ -4,9 +4,9 @@ import schedule.Schedule;
 
 public class RandomSchedule {
 
-    public static Schedule createRandomSchedule(final int SUBJECT_COUNT, final int STUDENT_COUNT) throws Exception{
+    public static Schedule createRandomSchedule(final String PATH, final int SUBJECT_COUNT, final int STUDENT_COUNT) throws Exception{
 
-        Schedule randomSchedule = new Schedule();
+        Schedule randomSchedule = new Schedule(PATH);
 
         for (int i = 0; i < SUBJECT_COUNT; i++){
             randomSchedule.addSubject(RandomSubjects.generateRandomSubject(randomSchedule, randomSchedule.getSubjectList()));
@@ -17,7 +17,6 @@ public class RandomSchedule {
         }
 
         return randomSchedule;
-
     }
     
 }

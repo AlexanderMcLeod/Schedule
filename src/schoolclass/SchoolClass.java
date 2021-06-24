@@ -1,8 +1,9 @@
 package schoolclass;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class SchoolClass{
+public class SchoolClass implements Serializable{
 
     private String ID; // Students unique ID number
 

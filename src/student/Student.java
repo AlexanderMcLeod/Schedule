@@ -1,8 +1,9 @@
 package student;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student{
+public class Student implements Serializable{
 
     private String ID; // Students unique ID number
 
@@ -53,10 +54,6 @@ public class Student{
 
         if (subjectSelection == null){
             throw new Exception("Subject selection list for student " + getID() + " is null");
-        }
-
-        if (subjectSelection.isEmpty()){
-            throw new Exception("Subject selection list for student " + getID() + " is empty");
         }
         
         return subjectSelection;

@@ -1,8 +1,8 @@
 package subject;
 
+import java.io.Serializable;
 
-
-public class Subject{
+public class Subject implements Serializable{
 
     private String ID; // Students unique ID number
 
