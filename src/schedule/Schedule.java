@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.io.Serializable;
 
 import random.RandomID;
+import schoolclass.SchoolClass;
 import student.Student;
 import subject.Subject;
-import time.Timetable;
+import time.*;
 import accesslayer.AccessLayer;
 
 public class Schedule implements Serializable{
@@ -105,6 +106,20 @@ public class Schedule implements Serializable{
         throw new Exception("Student ID " + STUDENT_ID + " was not found");
     }
 
+    public Student getStudentByIndex(final int INDEX) throws Exception {
+
+        if (INDEX > getStudentList().size() - 1){
+            throw new Exception("Index " + Integer.valueOf(INDEX) + " in student list is out of bounds");
+        }
+
+        if (getStudentList().get(INDEX) == null){
+            throw new Exception("Student at index " + Integer.valueOf(INDEX) + " has value of null");
+        }
+
+        return getStudentList().get(INDEX);
+
+    }
+
     public void removeStudent(final Student student) throws Exception{
 
         try{
@@ -145,6 +160,20 @@ public class Schedule implements Serializable{
         throw new Exception("Subject ID " + SUBJECT_ID + " was not found");
     }
 
+    public Subject getSubjectByIndex(final int INDEX) throws Exception {
+
+        if (INDEX > getSubjectList().size() - 1){
+            throw new Exception("Index " + Integer.valueOf(INDEX) + " of subject list is out of bounds");
+        }
+
+        if (getSubjectList().get(INDEX) == null){
+            throw new Exception("Subject at index " + Integer.valueOf(INDEX) + " in subject list has value of null");
+        }
+
+        return getSubjectList().get(INDEX);
+
+    }
+
     public void removeSubject(final Subject subject) throws Exception{
 
         try{
@@ -165,6 +194,23 @@ public class Schedule implements Serializable{
         throw new Exception("No subject had ID: " + ID_TO_BE_REMOVED);
 
     }
+
+    public void addDay(Day DAY_TO_ADD){
+        timetable.addDay(DAY_TO_ADD);
+    }
+
+    public Day getDayByIndex(final int INDEX) throws Exception{
+        return timetable.getDayByIndex(INDEX);
+    }
+
+    public Period getPeriodByIndices(final int DAY_INDEX, final int PERIOD_INDEX) throws Exception{
+        return getDayByIndex(DAY_INDEX).getPeriodByIndex(PERIOD_INDEX);
+    }
+
+    public ArrayList<SchoolClass> getSchoolClassListByIndices(final int DAY_INDEX, final int PERIOD_INDEX) throws Exception {
+        return getPeriodByIndices(DAY_INDEX, PERIOD_INDEX).getSchoolClassList();
+    }
+
 
 
 

@@ -31,12 +31,34 @@ public class Student implements Serializable{
             throw new Exception("Tried to set ID of Student with length 0, previous ID was " + getID());
         }
 
+        if (!usesLegalCharacters(ID_TO_SET)){
+            throw new Exception("ID " + ID_TO_SET + " uses illegal characters");
+        }
+
         ID = ID_TO_SET; 
+    }
+
+    public boolean usesLegalCharacters(final String ID){
+
+        String lowercaseAlphabet = "abcdefghijklmnopqrstuvwxyz";
+        String uppercaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String numberCase = "1234567890";
+
+        String availableLetters = lowercaseAlphabet + uppercaseAlphabet + numberCase;
+
+        for (int IDChar = 0; IDChar < ID.length() - 1; IDChar++){
+            for (int availableLetter = 0; availableLetter < availableLetters.length() - 1; availableLetter++){
+                if (ID.charAt(IDChar) == (availableLetters.charAt(availableLetter))){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private ArrayList<String> subjectSelection = new ArrayList<String>(); // This contains the ID of the subject selected by the student
 
-    public String getSubjectID(final int INDEX) throws Exception{
+    public String getSubjectIDByIndex(final int INDEX) throws Exception{
 
         if (getSubjectSelection().get(INDEX) == null){ // Checks whether subject selection is valid and whether the subject id is too
             throw new Exception("Subject for student " + getID() + " at index " + INDEX + "is null");
@@ -46,7 +68,7 @@ public class Student implements Serializable{
             throw new Exception("Subject for student " + getID() + " at index " + INDEX + " has length 0");
         }
 
-        return subjectSelection.get(INDEX);
+        return getSubjectSelection().get(INDEX);
 
     }
 

@@ -44,14 +44,22 @@ public class Day implements Serializable{
         return periodList;
     }
 
-    public Period getPeriod(final int INDEX) throws Exception{
+    public Period getPeriodByIndex(final int INDEX) throws Exception{
 
         if (getPeriodList().get(INDEX) == null){ // Checks whether subject selection is valid and whether the subject id is too
             throw new Exception("Period for day " + getID() + " at index " + INDEX + "is null");
         }
-
         return getPeriodList().get(INDEX);
+    }
 
+    public Period getPeriodByID(final String ID_TO_GET) throws Exception {
+
+        for (Period period : periodList){
+            if (period.getID().equals(ID_TO_GET)){
+                return period;
+            }
+        }
+        throw new Exception("Could not find day with ID " + ID_TO_GET);
     }
 
     public void addPeriod(final Period NEW_PERIOD){

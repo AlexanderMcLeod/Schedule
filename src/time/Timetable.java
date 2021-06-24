@@ -7,12 +7,22 @@ public class Timetable implements Serializable{
 
     ArrayList<Day> dayList = new ArrayList<Day>();
 
-    public Day getDay(final int INDEX) throws Exception{
+    public Day getDayByIndex(final int INDEX) throws Exception{
 
         if (getDayList().get(INDEX) == null){
             throw new Exception("Day " + Integer.valueOf(INDEX) + " has value null");
         }
         return dayList.get(INDEX);
+    }
+
+    public Day getDayByID(final String ID_TO_GET) throws Exception {
+
+        for (Day day : dayList){
+            if (day.getID().equals(ID_TO_GET)){
+                return day;
+            }
+        }
+        throw new Exception("Could not find day with ID " + ID_TO_GET);
     }
 
     public ArrayList<Day> getDayList() throws Exception{
