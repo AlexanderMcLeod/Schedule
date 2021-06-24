@@ -36,7 +36,7 @@ public class Sort {
         schedule.save();
         schedule.update();
 
-        System.out.println(schedule.getStudentByID(schedule.getSchoolClassListByIndices(0, 0).get(0).getStudentIDByIndex(0)).getSubjectIDByIndex(1));
+        System.out.println(schedule.getStudentByID(schedule.getStudentInSchoolClassByIndices(0, 0, 0, 0)).getSubjectIDByIndex(1));
 
         long endTime = System.nanoTime();
 

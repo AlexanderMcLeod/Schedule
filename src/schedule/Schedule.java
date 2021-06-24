@@ -211,7 +211,13 @@ public class Schedule implements Serializable{
         return getPeriodByIndices(DAY_INDEX, PERIOD_INDEX).getSchoolClassList();
     }
 
+    public SchoolClass getSchoolClassByIndices(final int DAY_INDEX, final int PERIOD_INDEX, final int SCHOOLCLASS_INDEX) throws Exception {
+        return getSchoolClassListByIndices(DAY_INDEX, PERIOD_INDEX).get(SCHOOLCLASS_INDEX);
+    }
 
+    public String getStudentInSchoolClassByIndices(final int DAY_INDEX, final int PERIOD_INDEX, final int SCHOOLCLASS_INDEX, final int STUDENT_INDEX) throws Exception {
+        return getSchoolClassByIndices(DAY_INDEX, PERIOD_INDEX, SCHOOLCLASS_INDEX).getStudentIDByIndex(STUDENT_INDEX);
+    }
 
 
 
