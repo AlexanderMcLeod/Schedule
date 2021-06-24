@@ -47,7 +47,7 @@ public class SchoolClass{
         }
 
         if (studentList.isEmpty()){
-            throw new Exception("Student list in class " + getID() " is empty");
+            throw new Exception("Student list in class " + getID() + " is empty");
         }
         
         return studentList;

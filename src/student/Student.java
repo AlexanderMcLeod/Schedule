@@ -29,11 +29,11 @@ public class Student{
     public String getSubjectID(final int INDEX) throws Exception{
 
         if (getSubjectSelection().get(INDEX) == null){ // Checks whether subject selection is valid and whether the subject id is too
-            throw new Exception("Subject at index is null");
+            throw new Exception("Subject for student " + getID() + " at index " + INDEX + "is null");
         }
 
         if (getSubjectSelection().get(INDEX).length() == 0){ // Checks whether the subject string is not length 0
-            throw new Exception("Subject at index has length 0");
+            throw new Exception("Subject for student " + getID() + " at index " + INDEX + " has length 0");
         }
 
         return subjectSelection.get(INDEX);
@@ -43,11 +43,11 @@ public class Student{
     public ArrayList<String> getSubjectSelection() throws Exception{
 
         if (subjectSelection == null){
-            throw new Exception("Subject selection list is null");
+            throw new Exception("Subject selection list for student " + getID() + "is null");
         }
 
         if (subjectSelection.isEmpty()){
-            throw new Exception("Subject selection list is empty");
+            throw new Exception("Subject selection list for student " + getID() + "is empty");
         }
         
         return subjectSelection;
