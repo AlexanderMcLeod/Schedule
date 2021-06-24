@@ -8,7 +8,7 @@ import schedule.Schedule;
 
 public class RandomStudents {
 
-    public static Student generateRandomStudent(final Schedule schedule, ArrayList<Student> studentList) throws Exception{
+    public static Student generateRandomStudent(final Schedule schedule) throws Exception{
 
         Student randomStudent = new Student();
 
@@ -20,6 +20,7 @@ public class RandomStudents {
         for (int i = 0; i < SUBJECT_SELECTION_COUNT; i++){
             randomStudent.addSubject(generateRandomSubject(randomStudent.getSubjectSelection()));
         }
+        
         return randomStudent;
     }
 

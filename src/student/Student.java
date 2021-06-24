@@ -52,11 +52,11 @@ public class Student{
     public ArrayList<String> getSubjectSelection() throws Exception{
 
         if (subjectSelection == null){
-            throw new Exception("Subject selection list for student " + getID() + "is null");
+            throw new Exception("Subject selection list for student " + getID() + " is null");
         }
 
         if (subjectSelection.isEmpty()){
-            throw new Exception("Subject selection list for student " + getID() + "is empty");
+            throw new Exception("Subject selection list for student " + getID() + " is empty");
         }
         
         return subjectSelection;

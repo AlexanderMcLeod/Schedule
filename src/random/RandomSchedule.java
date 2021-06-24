@@ -13,7 +13,7 @@ public class RandomSchedule {
         }
 
         for (int i = 0; i < STUDENT_COUNT; i++){
-            
+            randomSchedule.addStudent(RandomStudents.generateRandomStudent(randomSchedule));
         }
 
         return randomSchedule;
