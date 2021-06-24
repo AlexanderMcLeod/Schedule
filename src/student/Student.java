@@ -20,8 +20,17 @@ public class Student{
 
     }
 
-    public void setID(final String NEW_ID){ // This sets the student ID
-        ID = NEW_ID; 
+    public void setID(final String ID_TO_SET) throws Exception{ // This sets the student ID
+
+        if (ID_TO_SET == null){
+            throw new Exception("Tried to set ID of Student as null, previous ID was " + getID());
+        }
+
+        if (ID_TO_SET.length() == 0){
+            throw new Exception("Tried to set ID of Student with length 0, previous ID was " + getID());
+        }
+
+        ID = ID_TO_SET; 
     }
 
     private ArrayList<String> subjectSelection = new ArrayList<String>(); // This contains the ID of the subject selected by the student
